@@ -37,7 +37,5 @@ for i, job in enumerate(jlist):
             f.write(f"{skills.split(',')}\n")
             f.write(f"{last_date.strip()}\n")
             print(f"{more_info}\n")
-            if i == 1:
-                break
             # print()
 # print(jobs_list.text)
