@@ -20,12 +20,12 @@ import requests
 
 # html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
 
-text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
+link = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
 # print(html_text)
-soup = BeautifulSoup(text, 'lxml')
+soup = BeautifulSoup(link, 'lxml')
 
-joining_list = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
-for i, job in enumerate(joining_list):
+jlist = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
+for i, job in enumerate(jlist):
     last_date = job.find('span', class_='sim-posted').find('span').text
     if 'few' in last_date:
         companies = job.find('h3', class_='joblist-comp-name').text.replace(' ', '')
