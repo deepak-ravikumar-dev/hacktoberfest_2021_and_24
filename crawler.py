@@ -24,8 +24,8 @@ text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchT
 # print(html_text)
 soup = BeautifulSoup(text, 'lxml')
 
-jlist = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
-for i, job in enumerate(jlist):
+joining_list = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
+for i, job in enumerate(joining_list):
     last_date = job.find('span', class_='sim-posted').find('span').text
     if 'few' in last_date:
         companies = job.find('h3', class_='joblist-comp-name').text.replace(' ', '')
