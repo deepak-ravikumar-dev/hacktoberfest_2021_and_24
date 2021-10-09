@@ -20,9 +20,9 @@ import requests
 
 # html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
 
-html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
+text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
 # print(html_text)
-soup = BeautifulSoup(html_text, 'lxml')
+soup = BeautifulSoup(text, 'lxml')
 
 jobs_list = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
 for i, job in enumerate(jobs_list):
