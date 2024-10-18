@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Loss Roadmap</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Personalized Weight Loss Roadmap</h1>
+        <p class="text-center">Get a customized roadmap for your weight loss journey!</p>
+
+        <form id="weight-loss-roadmap-form">
+            <div class="form-group">
+                <label for="currentWeight">What is your current weight (in kg)?</label>
+                <input type="number" class="form-control" id="currentWeight" required placeholder="Enter your current weight">
+            </div>
+
+            <div class="form-group">
+                <label for="goalWeight">What is your target weight (in kg)?</label>
+                <input type="number" class="form-control" id="goalWeight" required placeholder="Enter your target weight">
+            </div>
+
+            <div class="form-group">
+                <label for="dietPreference">What type of diet do you prefer?</label>
+                <select class="form-control" id="dietPreference" required>
+                    <option value="" disabled selected>Select your diet type</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="low_carb">Low Carb</option>
+                    <option value="keto">Keto</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exerciseFrequency">How often do you exercise?</label>
+                <select class="form-control" id="exerciseFrequency" required>
+                    <option value="" disabled selected>Select your exercise frequency</option>
+                    <option value="rarely">Rarely</option>
+                    <option value="sometimes">Sometimes (1-2 times a week)</option>
+                    <option value="often">Often (3-4 times a week)</option>
+                    <option value="daily">Daily</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Get Roadmap</button>
+        </form>
+
+        <div id="roadmapResult" class="mt-4" style="display: none;">
+            <h3>Your Weight Loss Roadmap</h3>
+            <p id="roadmapContent"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('weight-loss-roadmap-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get user inputs
+            const currentWeight = document.getElementById('currentWeight').value;
+            const goalWeight = document.getElementById('goalWeight').value;
+            const dietPreference = document.getElementById('dietPreference').value;
+            const exerciseFrequency = document.getElementById('exerciseFrequency').value;
+
+            // Simulate a response (Replace this logic with the backend call)
+            let roadmap = `Based on your current weight of ${currentWeight} kg and your goal of ${goalWeight} kg, here is your personalized roadmap:\n\n`;
+
+            roadmap += "1. **Diet Plan:**\n";
+            if (dietPreference === 'balanced') {
+                roadmap += "- Follow a balanced diet with a good mix of proteins, fats, and carbohydrates.\n";
+                roadmap += "- Include plenty of vegetables, lean proteins, and whole grains.\n";
+            } else if (dietPreference === 'low_carb') {
+                roadmap += "- Limit your carb intake and focus on proteins and healthy fats.\n";
+                roadmap += "- Avoid sugar, bread, and pasta, and include more lean meat, fish, and green veggies.\n";
+            } else if (dietPreference === 'keto') {
+                roadmap += "- Maintain a high-fat, low-carb diet to help your body enter ketosis.\n";
+                roadmap += "- Include foods like avocados, nuts, fatty fish, and coconut oil.\n";
+            } else if (dietPreference === 'vegetarian') {
+                roadmap += "- Focus on plant-based proteins like beans, lentils, tofu, and nuts.\n";
+                roadmap += "- Include plenty of colorful vegetables and whole grains.\n";
+            } else if (dietPreference === 'vegan') {
+                roadmap += "- Ensure you're getting enough protein from plant-based sources like beans, lentils, and quinoa.\n";
+                roadmap += "- Supplement your diet with B12, iron, and other essential nutrients.\n";
+            }
+
+            roadmap += "\n2. **Exercise Recommendations:**\n";
+            if (exerciseFrequency === 'rarely') {
+                roadmap += "- Start with light exercises like walking or stretching for 20-30 minutes a day.\n";
+                roadmap += "- Gradually increase your activity to include more cardio and strength training.\n";
+            } else if (exerciseFrequency === 'sometimes') {
+                roadmap += "- Aim to exercise 3-4 times a week, focusing on a mix of cardio and light strength training.\n";
+                roadmap += "- Try activities like cycling, jogging, or swimming to burn calories.\n";
+            } else if (exerciseFrequency === 'often') {
+                roadmap += "- Maintain a consistent exercise routine with a balance of cardio and resistance training.\n";
+                roadmap += "- Consider high-intensity interval training (HIIT) for better fat-burning results.\n";
+            } else if (exerciseFrequency === 'daily') {
+                roadmap += "- Keep up the great work! Focus on adding variety to your routine to challenge different muscle groups.\n";
+                roadmap += "- Ensure adequate rest days to prevent burnout and injury.\n";
+            }
+
+            roadmap += "\n3. **Lifestyle Tips:**\n";
+            roadmap += "- Stay hydrated by drinking plenty of water throughout the day.\n";
+            roadmap += "- Get enough sleep (7-8 hours per night) to help your body recover and regulate metabolism.\n";
+            roadmap += "- Manage stress through activities like meditation, yoga, or hobbies you enjoy.\n";
+
+            // Display the roadmap result
+            document.getElementById('roadmapContent').innerText = roadmap;
+            document.getElementById('roadmapResult').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
