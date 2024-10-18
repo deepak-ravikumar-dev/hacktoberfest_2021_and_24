@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Peach Calendar 2024</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffebd2; /* Light peach background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .calendar-container {
+            background: #fff5e5; /* Soft peach background */
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .calendar-container:hover {
+            transform: scale(1.05);
+        }
+
+        .month-navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            background-color: #ff8c8c; /* Light pink button color */
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 1.1em;
+            transition: background 0.3s ease-in-out, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 140, 140, 0.5);
+        }
+
+        .nav-button:hover {
+            background-color: #ff5a5a; /* Darker pink color on hover */
+            transform: scale(1.1);
+        }
+
+        .month {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff7f50; /* Coral color for the month name */
+            text-shadow: 2px 2px 8px rgba(255, 127, 80, 0.8); /* Soft glow effect */
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .day {
+            background: #ffcccb; /* Soft peach-pink shade for the days */
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 1.5em;
+            color: #5c4d7d; /* Deep purple text color */
+            transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .day:hover {
+            background: #ffb6c1; /* Change to a softer pink on hover */
+            box-shadow: 0 0 20px rgba(255, 100, 100, 0.6); /* Glowing effect on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="month-navigation">
+            <button class="nav-button" onclick="prevMonth()">Previous</button>
+            <div class="month" id="month-name">January</div>
+            <button class="nav-button" onclick="nextMonth()">Next</button>
+        </div>
+        <div class="days-grid" id="days-grid">
+            <!-- Days will be generated dynamically -->
+        </div>
+    </div>
+
+    <script>
+        const months = [
+            { name: "January", days: 31 },
+            { name: "February", days: 29 }, // Leap year 2024
+            { name: "March", days: 31 },
+            { name: "April", days: 30 },
+            { name: "May", days: 31 },
+            { name: "June", days: 30 },
+            { name: "July", days: 31 },
+            { name: "August", days: 31 },
+            { name: "September", days: 30 },
+            { name: "October", days: 31 },
+            { name: "November", days: 30 },
+            { name: "December", days: 31 }
+        ];
+
+        let currentMonthIndex = 0;
+
+        function renderCalendar(monthIndex) {
+            const monthName = document.getElementById("month-name");
+            const daysGrid = document.getElementById("days-grid");
+
+            // Update the month name
+            monthName.textContent = months[monthIndex].name;
+
+            // Clear previous days
+            daysGrid.innerHTML = "";
+
+            // Generate days for the current month
+            for (let day = 1; day <= months[monthIndex].days; day++) {
+                const dayElement = document.createElement("div");
+                dayElement.classList.add("day");
+                dayElement.textContent = day;
+                daysGrid.appendChild(dayElement);
+            }
+        }
+
+        function prevMonth() {
+            currentMonthIndex = (currentMonthIndex === 0) ? 11 : currentMonthIndex - 1;
+            renderCalendar(currentMonthIndex);
+        }
+
+        function nextMonth() {
+            currentMonthIndex = (currentMonthIndex === 11) ? 0 : currentMonthIndex + 1;
+            renderCalendar(currentMonthIndex);
+        }
+
+        // Initial render for January
+        renderCalendar(currentMonthIndex);
+    </script>
+</body>
+</html>
