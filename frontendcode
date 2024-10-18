@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Learning Roadmap</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Python Learning Roadmap</h1>
+        <p class="text-center">Get a personalized roadmap to start your Python learning journey!</p>
+
+        <form id="python-roadmap-form">
+            <div class="form-group">
+                <label for="experienceLevel">What is your current level of experience with programming?</label>
+                <select class="form-control" id="experienceLevel" required>
+                    <option value="" disabled selected>Select your level</option>
+                    <option value="beginner">Beginner - No prior experience</option>
+                    <option value="intermediate">Intermediate - Some experience with other languages</option>
+                    <option value="advanced">Advanced - Experienced in multiple languages</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="goal">What is your main goal for learning Python?</label>
+                <select class="form-control" id="goal" required>
+                    <option value="" disabled selected>Select your goal</option>
+                    <option value="data_science">Data Science / Machine Learning</option>
+                    <option value="web_development">Web Development</option>
+                    <option value="game_development">Game Development</option>
+                    <option value="automation">Automation / Scripting</option>
+                    <option value="general_programming">General Programming</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Get Roadmap</button>
+        </form>
+
+        <div id="roadmapResult" class="mt-4" style="display: none;">
+            <h3>Your Python Learning Roadmap</h3>
+            <p id="roadmapContent"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('python-roadmap-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get user inputs
+            const experienceLevel = document.getElementById('experienceLevel').value;
+            const goal = document.getElementById('goal').value;
+
+            // Simulate a response (Replace this logic with the backend call)
+            let roadmap = "To get started, here are the steps you'll want to follow: \n\n";
+            
+            if (experienceLevel === 'beginner') {
+                roadmap += "1. Start with Python basics (syntax, variables, data types)\n";
+                roadmap += "2. Learn control structures (if-else, loops)\n";
+                roadmap += "3. Understand functions and modules\n";
+            } else if (experienceLevel === 'intermediate') {
+                roadmap += "1. Explore Object-Oriented Programming (OOP)\n";
+                roadmap += "2. Study data structures (lists, dictionaries, sets)\n";
+                roadmap += "3. Start learning about libraries and frameworks\n";
+            } else if (experienceLevel === 'advanced') {
+                roadmap += "1. Dive deep into advanced topics (decorators, generators)\n";
+                roadmap += "2. Work with Python libraries extensively\n";
+                roadmap += "3. Start contributing to open-source projects\n";
+            }
+
+            if (goal === 'data_science') {
+                roadmap += "\nFor Data Science, focus on: NumPy, Pandas, Matplotlib, Scikit-Learn, TensorFlow.\n";
+            } else if (goal === 'web_development') {
+                roadmap += "\nFor Web Development, learn: Flask, Django, REST APIs.\n";
+            } else if (goal === 'game_development') {
+                roadmap += "\nFor Game Development, focus on: Pygame and other graphics libraries.\n";
+            } else if (goal === 'automation') {
+                roadmap += "\nFor Automation, focus on: Scripting techniques, using modules like os, sys, and subprocess.\n";
+            } else if (goal === 'general_programming') {
+                roadmap += "\nFor General Programming, enhance skills in problem-solving and working with algorithms.\n";
+            }
+
+            // Display the roadmap result
+            document.getElementById('roadmapContent').innerText = roadmap;
+            document.getElementById('roadmapResult').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
