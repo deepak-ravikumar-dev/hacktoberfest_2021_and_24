@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple Peach Clock</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4e1d2; /* Light peach background */
+            font-family: 'Arial', sans-serif;
+            color: #5e3c58; /* Soft purple color for text */
+        }
+
+        .clock-container {
+            background-color: #e6c9d3; /* Peachy pink background for the clock */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid #d69dbe; /* Border in a deeper peach tone */
+        }
+
+        .time {
+            font-size: 3em;
+            font-weight: bold;
+            color: #4a2d4f; /* Deep purple for the time display */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Soft shadow for glowing effect */
+        }
+
+        .date {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #7b5279; /* Muted purple for the date */
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="time" id="time">00:00:00</div>
+        <div class="date" id="date">Loading...</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            const day = now.toLocaleDateString('en-US', { weekday: 'long' });
+            const date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const dateString = `${day}, ${date}`;
+
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+
+        setInterval(updateClock, 1000); // Update every second
+        updateClock(); // Initial call to display the clock immediately
+    </script>
+</body>
+</html>
