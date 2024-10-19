@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Text Locker</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffcccb, #ffe4e1);
+            font-family: Arial, sans-serif;
+        }
+
+        .locker-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .locker-header {
+            font-size: 1.8em;
+            color: #ff7f7f;
+            margin-bottom: 20px;
+        }
+
+        .text-area, .input-field {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ffd6d6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .text-area:focus, .input-field:focus {
+            border-color: #ff7f7f;
+            box-shadow: 0 0 8px rgba(255, 127, 127, 0.5);
+            outline: none;
+        }
+
+        .button {
+            background: #ff9999;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 10px;
+            transition: background 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 153, 153, 0.5);
+        }
+
+        .button:hover {
+            background: #ff6666;
+            transform: scale(1.1);
+        }
+
+        .hidden-text {
+            display: none;
+            color: #ff9999;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .message {
+            color: #ff7f7f;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="locker-container">
+        <div class="locker-header">Online Text Locker</div>
+
+        <textarea class="text-area" id="textInput" placeholder="Enter your text here..."></textarea>
+        <input type="password" class="input-field" id="passwordInput" placeholder="Enter password...">
+
+        <button class="button" onclick="lockText()">Lock Text</button>
+        <button class="button" onclick="unlockText()">Unlock Text</button>
+
+        <div class="hidden-text" id="lockedMessage"></div>
+        <div class="message" id="statusMessage"></div>
+    </div>
+
+    <script>
+        let storedText = "";
+        let storedPassword = "";
+
+        function lockText() {
+            const textInput = document.getElementById("textInput").value;
+            const passwordInput = document.getElementById("passwordInput").value;
+
+            if (textInput && passwordInput) {
+                storedText = textInput;
+                storedPassword = passwordInput;
+
+                document.getElementById("textInput").value = "";
+                document.getElementById("passwordInput").value = "";
+
+                document.getElementById("lockedMessage").style.display = "block";
+                document.getElementById("lockedMessage").textContent = "Text is locked! 🔒";
+                document.getElementById("statusMessage").textContent = "Use your password to unlock the text.";
+            } else {
+                document.getElementById("statusMessage").textContent = "Please enter text and a password to lock!";
+            }
+        }
+
+        function unlockText() {
+            const passwordInput = document.getElementById("passwordInput").value;
+
+            if (passwordInput === storedPassword) {
+                document.getElementById("lockedMessage").textContent = storedText;
+                document.getElementById("statusMessage").textContent = "Text unlocked successfully! 🔓";
+            } else {
+                document.getElementById("statusMessage").textContent = "Incorrect password! Please try again.";
+            }
+        }
+    </script>
+
+</body>
+</html>
